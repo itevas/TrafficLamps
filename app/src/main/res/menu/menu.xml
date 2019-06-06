@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/auto_button"
+        android:icon="@drawable/ic_auto"
+        android:title="@string/auto"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/manual_button"
+        android:icon="@drawable/ic_manual"
+        android:title="@string/manual"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/settings_button"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings"
+        app:showAsAction="always|withText" />
+</menu>

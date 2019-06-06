@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Світлофор</string>
+    <string name="green">зелений</string>
+    <string name="yellow">жовтий</string>
+    <string name="red">червоний</string>
+    <string name="manual">Ручний</string>
+    <string name="auto">Авто</string>
+    <string name="settings">Налаштування</string>
+    <string name="title_activity_settings">Налаштування</string>
+    <string name="red_time">Час червоного сигналу</string>
+    <string name="seconds">сек.</string>
+    <string name="yellow_light_time">Час жовтого сигналу</string>
+    <string name="green_light_time">Час зеленого сигналу</string>
+    <string name="countdown_show">Показувати відлік</string>
+    <string name="note1">Задайте час від 1 до 300 секунд</string>
+    <string name="showSmile">Показати смайлики</string>
+    <string name="blinkingGreen">Мигаючий зелений</string>
+    <string name="redAfterGreen">Зелений після червоного</string>
+    <string name="yellowWithRed">Жовтий з червоним</string>
+    <string name="chageButton">Змінити</string>
+</resources>

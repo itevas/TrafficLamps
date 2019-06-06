@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ampel</string>
+    <string name="note1">Stellen Sie die Zeit im Bereich von 1 bis 300 Sekunden ein</string>
+    <string name="countdown_show">Countdown anzeigen</string>
+    <string name="green_light_time">Grünes Licht Zeit</string>
+    <string name="yellow_light_time">Gelbes Licht Zeit</string>
+    <string name="seconds">Sekunden</string>
+    <string name="red_time">Rotes Licht Zeit</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="auto">Auto</string>
+    <string name="manual">Manuell</string>
+    <string name="red">rot</string>
+    <string name="yellow">gelb</string>
+    <string name="green">grün</string>
+    <string name="showSmile">Smileys anzeigen</string>
+    <string name="blinkingGreen">Grün blinkend</string>
+    <string name="redAfterGreen">Grün nach Rot</string>
+    <string name="yellowWithRed">Gelb mit rot</string>
+    <string name="chageButton">Veränderung</string>
+</resources>

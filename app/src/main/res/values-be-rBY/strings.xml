@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Святлафор</string>
+    <string name="green">зялёны</string>
+    <string name="yellow">жоўты</string>
+    <string name="red">чырвоны</string>
+    <string name="manual">Ручной</string>
+    <string name="auto">Аўто</string>
+    <string name="settings">Налады</string>
+    <string name="title_activity_settings">Налады</string>
+    <string name="red_time">Час чырвонага святла</string>
+    <string name="seconds">секунд</string>
+    <string name="yellow_light_time">Час жоўтага святла</string>
+    <string name="green_light_time">Час зялёнае святло</string>
+    <string name="note1">Усталюйце час у дыяпазоне ад 1 да 300 секунд</string>
+    <string name="countdown_show">Паказаць зваротны адлік</string>
+    <string name="blinkingGreen">Міргае зялёным</string>
+    <string name="showSmile">Паказаць ўсмешку</string>
+    <string name="chageButton">Змяніць</string>
+    <string name="redAfterGreen">Зялёны пасля чырвонага</string>
+    <string name="yellowWithRed">Жоўты з чырвоным</string>
+</resources>

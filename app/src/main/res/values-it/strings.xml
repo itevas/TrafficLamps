@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Semaforo</string>
+    <string name="green">verde</string>
+    <string name="yellow">giallo</string>
+    <string name="red">rosso</string>
+    <string name="manual">Manuale</string>
+    <string name="auto">Auto</string>
+    <string name="settings">Impostazioni</string>
+    <string name="title_activity_settings">Impostazioni</string>
+    <string name="red_time">Tempo di luce rossa</string>
+    <string name="seconds">secondi</string>
+    <string name="yellow_light_time">Tempo di luce gialla</string>
+    <string name="green_light_time">Tempo di luce verde</string>
+    <string name="countdown_show">Mostra il conto alla rovescia</string>
+    <string name="note1">Impostare il tempo nell\'intervallo da 1 a 300 secondi</string>
+    <string name="blinkingGreen">Verde lampeggiante</string>
+    <string name="chageButton">Modificare</string>
+    <string name="redAfterGreen">Verde dopo rosso</string>
+    <string name="yellowWithRed">Giallo con rosso</string>
+    <string name="showSmile">Mostra il sorriso</string>
+</resources>

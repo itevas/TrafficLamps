@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Feu de circulation</string>
+    <string name="green">vert</string>
+    <string name="yellow">jaune</string>
+    <string name="red">rouge</string>
+    <string name="manual">Manuel</string>
+    <string name="auto">Auto</string>
+    <string name="settings">Réglages</string>
+    <string name="title_activity_settings">Réglages</string>
+    <string name="red_time">Temps de lumière rouge</string>
+    <string name="seconds">secondes</string>
+    <string name="yellow_light_time">Temps de lumière jaune</string>
+    <string name="green_light_time">Temps de lumière verte</string>
+    <string name="countdown_show">Afficher le compte à rebours</string>
+    <string name="note1">Réglez le temps dans la plage de 1 à 300 secondes</string>
+    <string name="chageButton">Changement</string>
+    <string name="blinkingGreen">Vert clignotant</string>
+    <string name="redAfterGreen">Vert après rouge</string>
+    <string name="yellowWithRed">Jaune avec rouge</string>
+    <string name="showSmile">Montrer le sourire</string>
+</resources>

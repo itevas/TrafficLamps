@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Traffic Lamps</string>
+    <string name="green">green</string>
+    <string name="yellow">yellow</string>
+    <string name="red">red</string>
+    <string name="manual">Manual</string>
+    <string name="auto">Auto</string>
+    <string name="settings">Settings</string>
+    <string name="time" translatable="false">22</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="red_time">Red light time</string>
+    <string name="seconds">seconds</string>
+    <string name="yellow_light_time">Yellow light time</string>
+    <string name="green_light_time">Green light time</string>
+    <string name="countdown_show">Show countdown</string>
+    <string name="note1">Set the time in the range from 1 to 300 seconds</string>
+    <string name="chageButton">Change</string>
+    <string name="blinkingGreen">Blinking green</string>
+    <string name="redAfterGreen">Green after red</string>
+    <string name="yellowWithRed">Yellow with red</string>
+    <string name="showSmile">Show smile</string>
+    <string name="policy" translatable="false">Privacy policy</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id_1" translatable="false">ca-app-pub-4249365726191634/7143249811</string>
+    <string name="banner_ad_unit_id_2" translatable="false">ca-app-pub-4249365726191634/6173497663</string>
+    <string name="banner_ad_unit_id_1b" translatable="false">ca-app-pub-4249365726191634/4042335956</string>
+    <string name="banner_ad_unit_id_2b" translatable="false">ca-app-pub-4249365726191634/5594079015</string>
+    <string name="banner_ad_unit_id_main" translatable="false">ca-app-pub-4249365726191634/3724007221</string>
+</resources>
