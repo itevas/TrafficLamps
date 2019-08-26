@@ -31,7 +31,6 @@ public class SettingsActivity extends AppCompatActivity {
             blinkingGreenCheckBox;
     SharedPreferences settingsPreferences;
     SharedPreferences.Editor editor;
-    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
