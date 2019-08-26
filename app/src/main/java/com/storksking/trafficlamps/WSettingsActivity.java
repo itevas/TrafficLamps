@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,6 +16,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.doubleclick.PublisherInterstitialAd;
@@ -24,7 +25,7 @@ import com.google.android.gms.ads.doubleclick.PublisherInterstitialAd;
 public class WSettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "LOOKING";
-    private AdView mAdViewW1, mAdViewW2;
+    private AdView mAdViewW1;
     private PublisherInterstitialAd publisherInterstitialAd;
 
     private EditText redEditText, greenEditText;
@@ -55,12 +56,6 @@ public class WSettingsActivity extends AppCompatActivity {
                 .addTestDevice("C208971BC8376D4FDC96E9DC05A7EFA6")
                 .build();
         mAdViewW1.loadAd(adRequest);
-
-        mAdViewW2 = findViewById(R.id.adViewW2);
-        AdRequest adRequest1 = new AdRequest.Builder()
-                .addTestDevice("C208971BC8376D4FDC96E9DC05A7EFA6")
-                .build();
-        mAdViewW2.loadAd(adRequest1);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 

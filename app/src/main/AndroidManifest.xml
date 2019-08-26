@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.storksking.trafficlamps">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,7 +29,8 @@
         </activity>
 
         <activity android:name=".TLActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.storksking.trafficlamps.MainActivity" />
@@ -37,7 +39,8 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".TLActivity">
+            android:parentActivityName=".TLActivity"
+            tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.storksking.trafficlamps.TLActivity" />
@@ -45,7 +48,8 @@
 
         <activity
             android:name=".WActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.storksking.trafficlamps.MainActivity" />
@@ -53,7 +57,8 @@
 
         <activity
             android:name=".WSettingsActivity"
-            android:parentActivityName=".WActivity">
+            android:parentActivityName=".WActivity"
+            tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.storksking.trafficlamps.WActivity" />
@@ -62,7 +67,8 @@
         <activity
             android:name=".RLActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            tools:targetApi="jelly_bean">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.storksking.trafficlamps.MainActivity" />

@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,13 +16,15 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "LOOKING";
-    private AdView mAdView1, mAdView2;
+    private AdView mAdView;
 
     private EditText redEditText, yellowEditText, greenEditText;
     CheckBox countDownCheckBox, smileCheckBox, yellowWithRedCheckBox, redAfterGreenCheckBox,
@@ -38,17 +39,11 @@ public class SettingsActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_settings);
 
-        mAdView1 = findViewById(R.id.adView1);
-        AdRequest adRequest1 = new AdRequest.Builder()
-                .addTestDevice("C208971BC8376D4FDC96E9DC05A7EFA6")
-                .build();
-        mAdView1.loadAd(adRequest1);
-
-        mAdView2 = findViewById(R.id.adView2);
+        mAdView = findViewById(R.id.adView2);
         AdRequest adRequest2 = new AdRequest.Builder()
                 .addTestDevice("C208971BC8376D4FDC96E9DC05A7EFA6")
                 .build();
-        mAdView2.loadAd(adRequest2);
+        mAdView.loadAd(adRequest2);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 

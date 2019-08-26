@@ -14,20 +14,10 @@
         android:paddingBottom="16sp"
         tools:context=".SettingsActivity">
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id_1" />
-
         <LinearLayout
             android:id="@+id/linlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/adView1"
             android:orientation="vertical"
             android:padding="16sp">
 
