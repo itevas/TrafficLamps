@@ -44,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
         });
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, "ca-app-pub-4249365726191634/1199952092", adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 // The mInterstitialAd reference will be null until
@@ -64,29 +65,30 @@ public class MainActivity extends AppCompatActivity {
                 mInterstitialAd = null;
             }
         });
+        if (mInterstitialAd != null) {
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    // Called when fullscreen content is dismissed.
+                    Log.d("TAG", "The ad was dismissed.");
+                }
 
-        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
-            @Override
-            public void onAdDismissedFullScreenContent() {
-                // Called when fullscreen content is dismissed.
-                Log.d("TAG", "The ad was dismissed.");
-            }
+                @Override
+                public void onAdFailedToShowFullScreenContent(AdError adError) {
+                    // Called when fullscreen content failed to show.
+                    Log.d("TAG", "The ad failed to show.");
+                }
 
-            @Override
-            public void onAdFailedToShowFullScreenContent(AdError adError) {
-                // Called when fullscreen content failed to show.
-                Log.d("TAG", "The ad failed to show.");
-            }
-
-            @Override
-            public void onAdShowedFullScreenContent() {
-                // Called when fullscreen content is shown.
-                // Make sure to set your reference to null so you don't
-                // show it a second time.
-                mInterstitialAd = null;
-                Log.d("TAG", "The ad was shown.");
-            }
-        });
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    // Called when fullscreen content is shown.
+                    // Make sure to set your reference to null so you don't
+                    // show it a second time.
+                    mInterstitialAd = null;
+                    Log.d("TAG", "The ad was shown.");
+                }
+            });
+        }
 
         mAdView = findViewById(R.id.adViewMain);
         mAdView.loadAd(adRequest);
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void setColor (int color){
+    void setColor(int color) {
         imageView1.setColorFilter(color);
         imageView2.setColorFilter(color);
         imageView3.setColorFilter(color);
@@ -140,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         imageView5.setColorFilter(color);
     }
 
-    void setColors(int color){
+    void setColors(int color) {
         setColor(color);
         imageViewtl.setColorFilter(color);
         imageViewpl.setColorFilter(color);
@@ -188,25 +190,25 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         setColors(Color.WHITE);
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         setColors(Color.WHITE);
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
         setColors(Color.WHITE);
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
         setColors(Color.WHITE);
     }
