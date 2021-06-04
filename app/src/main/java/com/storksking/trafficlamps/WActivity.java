@@ -7,6 +7,8 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -18,16 +20,24 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
-import com.google.android.gms.ads.doubleclick.PublisherInterstitialAd;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 public class WActivity extends AppCompatActivity {
 
     static long stopTime, goTime;
     static boolean wCountdown, wBlinkingGreen;
 
-    private PublisherInterstitialAd publisherInterstitialAd;
+    private InterstitialAd mInterstitialAd;
     private static final String TAG_1 = "KINGL";
+    private static final String TAG = "LOOKING";
 
     private ImageView redImageView, greenImageView, stopWalk, goWalk;
     private TextView stopTextView, goTextView;
@@ -42,11 +52,53 @@ public class WActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        publisherInterstitialAd = new PublisherInterstitialAd(this);
-        publisherInterstitialAd.setAdUnitId("ca-app-pub-4249365726191634/1199952092");
-        publisherInterstitialAd.loadAd(new PublisherAdRequest.Builder()
-                .addTestDevice("C208971BC8376D4FDC96E9DC05A7EFA6")
-                .build());
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(this,"ca-app-pub-4249365726191634/1199952092", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                mInterstitialAd = interstitialAd;
+                Log.i(TAG, "onAdLoaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                Log.i(TAG, loadAdError.getMessage());
+                mInterstitialAd = null;
+            }
+        });
+
+        if (mInterstitialAd != null) {
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    // Called when fullscreen content is dismissed.
+                    Log.d("TAG", "The ad was dismissed.");
+                }
+
+                @Override
+                public void onAdFailedToShowFullScreenContent(AdError adError) {
+                    // Called when fullscreen content failed to show.
+                    Log.d("TAG", "The ad failed to show.");
+                }
+
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    // Called when fullscreen content is shown.
+                    // Make sure to set your reference to null so you don't
+                    // show it a second time.
+                    mInterstitialAd = null;
+                    Log.d("TAG", "The ad was shown.");
+                }
+            });
+        }
 
         settingsPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
 
@@ -122,10 +174,10 @@ public class WActivity extends AppCompatActivity {
                 break;
             case R.id.settings_button:
                 stopBlink();
-                if (publisherInterstitialAd.isLoaded()) {
-                    publisherInterstitialAd.show();
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(WActivity.this);
                 } else {
-                    Log.d(TAG_1, "The interstitial wasn't loaded yet(WActivity_settings).");
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
                 }
                 Intent intent = new Intent(this, WSettingsActivity.class);
                 startActivity(intent);

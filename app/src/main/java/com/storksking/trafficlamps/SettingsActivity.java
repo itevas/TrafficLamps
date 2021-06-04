@@ -41,7 +41,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         mAdView = findViewById(R.id.adView2);
         AdRequest adRequest2 = new AdRequest.Builder()
-                .addTestDevice("C208971BC8376D4FDC96E9DC05A7EFA6")
                 .build();
         mAdView.loadAd(adRequest2);
 

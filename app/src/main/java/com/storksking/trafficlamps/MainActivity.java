@@ -11,19 +11,30 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.ads.mediation.admob.AdMobAdapter;
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
-import com.google.android.gms.ads.doubleclick.PublisherInterstitialAd;
+import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences settingsPreferences;
     SharedPreferences.Editor editor;
-    private PublisherInterstitialAd publisherInterstitialAd;
+    private InterstitialAd mInterstitialAd;
     private AdView mAdView;
     private Context context = this;
     private static final String TAG = "LOOKING";
@@ -36,18 +47,64 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        MobileAds.initialize(this, "ca-app-pub-4249365726191634~3701810203");
+        List<String> testDevices = new ArrayList<>();
+        testDevices.add("C208971BC8376D4FDC96E9DC05A7EFA6");
+        RequestConfiguration conf= new RequestConfiguration.Builder()
+                .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE)
+                .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_G)
+                .setTestDeviceIds(testDevices)
+                .build();
+        MobileAds.setRequestConfiguration(conf);
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
 
-        publisherInterstitialAd = new PublisherInterstitialAd(this);
-        publisherInterstitialAd.setAdUnitId("ca-app-pub-4249365726191634/1199952092");
-        publisherInterstitialAd.loadAd(new PublisherAdRequest.Builder()
-                .addTestDevice("C208971BC8376D4FDC96E9DC05A7EFA6")
-                .build());
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(this, "ca-app-pub-4249365726191634/1199952092", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                mInterstitialAd = interstitialAd;
+                Log.i(TAG, "onAdLoaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                Log.i(TAG, loadAdError.getMessage());
+                mInterstitialAd = null;
+            }
+        });
+        if (mInterstitialAd != null) {
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    // Called when fullscreen content is dismissed.
+                    Log.d("TAG", "The ad was dismissed.");
+                }
+
+                @Override
+                public void onAdFailedToShowFullScreenContent(AdError adError) {
+                    // Called when fullscreen content failed to show.
+                    Log.d("TAG", "The ad failed to show.");
+                }
+
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    // Called when fullscreen content is shown.
+                    // Make sure to set your reference to null so you don't
+                    // show it a second time.
+                    mInterstitialAd = null;
+                    Log.d("TAG", "The ad was shown.");
+                }
+            });
+        }
 
         mAdView = findViewById(R.id.adViewMain);
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("C208971BC8376D4FDC96E9DC05A7EFA6")
-                .build();
         mAdView.loadAd(adRequest);
 
         settingsPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
@@ -91,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void setColor (int color){
+    void setColor(int color) {
         imageView1.setColorFilter(color);
         imageView2.setColorFilter(color);
         imageView3.setColorFilter(color);
@@ -99,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         imageView5.setColorFilter(color);
     }
 
-    void setColors(int color){
+    void setColors(int color) {
         setColor(color);
         imageViewtl.setColorFilter(color);
         imageViewpl.setColorFilter(color);
@@ -110,10 +167,10 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.traffic_control:
-                    if (publisherInterstitialAd.isLoaded()) {
-                        publisherInterstitialAd.show();
+                    if (mInterstitialAd != null) {
+                        mInterstitialAd.show(MainActivity.this);
                     } else {
-                        Log.d(TAG, "The interstitial wasn't loaded yet(settings_main).");
+                        Log.d("TAG", "The interstitial ad wasn't ready yet.");
                     }
 
                     imageViewtl.setColorFilter(Color.GREEN);
@@ -121,10 +178,10 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.pedestrian_control:
-                    if (publisherInterstitialAd.isLoaded()) {
-                        publisherInterstitialAd.show();
+                    if (mInterstitialAd != null) {
+                        mInterstitialAd.show(MainActivity.this);
                     } else {
-                        Log.d(TAG, "The interstitial wasn't loaded yet(settings_main).");
+                        Log.d("TAG", "The interstitial ad wasn't ready yet.");
                     }
 
                     imageViewpl.setColorFilter(Color.GREEN);
@@ -132,11 +189,12 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent2);
                     break;
                 case R.id.racing_control:
-                    if (publisherInterstitialAd.isLoaded()) {
-                        publisherInterstitialAd.show();
+                    if (mInterstitialAd != null) {
+                        mInterstitialAd.show(MainActivity.this);
                     } else {
-                        Log.d(TAG, "The interstitial wasn't loaded yet(settings_main).");
+                        Log.d("TAG", "The interstitial ad wasn't ready yet.");
                     }
+
                     setColor(Color.GREEN);
                     Intent intent3 = new Intent(context, RLActivity.class);
                     startActivity(intent3);
@@ -146,25 +204,25 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         setColors(Color.WHITE);
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         setColors(Color.WHITE);
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
         setColors(Color.WHITE);
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
         setColors(Color.WHITE);
     }

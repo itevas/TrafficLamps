@@ -20,13 +20,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.doubleclick.PublisherInterstitialAd;
 
 public class WSettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "LOOKING";
     private AdView mAdViewW1;
-    private PublisherInterstitialAd publisherInterstitialAd;
 
     private EditText redEditText, greenEditText;
     CheckBox countDownCheckBox, blinkingGreenCheckBox;
@@ -51,9 +49,9 @@ public class WSettingsActivity extends AppCompatActivity {
             }
         });
 
+
         mAdViewW1 = findViewById(R.id.adViewW1);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("C208971BC8376D4FDC96E9DC05A7EFA6")
                 .build();
         mAdViewW1.loadAd(adRequest);
 
