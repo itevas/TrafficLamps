@@ -49,6 +49,7 @@ public class WSettingsActivity extends AppCompatActivity {
             }
         });
 
+
         mAdViewW1 = findViewById(R.id.adViewW1);
         AdRequest adRequest = new AdRequest.Builder()
                 .build();

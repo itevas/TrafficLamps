@@ -14,16 +14,21 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,11 +47,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        List<String> testDevices = new ArrayList<>();
+        testDevices.add("C208971BC8376D4FDC96E9DC05A7EFA6");
+        RequestConfiguration conf= new RequestConfiguration.Builder()
+                .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE)
+                .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_G)
+                .setTestDeviceIds(testDevices)
+                .build();
+        MobileAds.setRequestConfiguration(conf);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
+
         AdRequest adRequest = new AdRequest.Builder().build();
 
         InterstitialAd.load(this, "ca-app-pub-4249365726191634/1199952092", adRequest, new InterstitialAdLoadCallback() {
