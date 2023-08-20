@@ -49,5 +49,4 @@ gradlew
 *.bat
 *.json
 *.pro
-gradle.properties
 release/

@@ -9,12 +9,13 @@ android {
     }
     defaultConfig {
         applicationId "com.storksking.trafficlamps"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 33
         versionCode 18
         versionName "1.18"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -35,4 +36,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:21.1.1'
     implementation 'com.google.android.gms:play-services-ads:22.2.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.android.support:multidex:1.0.3'
 }
