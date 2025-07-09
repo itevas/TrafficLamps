@@ -2,17 +2,17 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdk 34
+    compileSdk 36
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
         applicationId "com.storksking.trafficlamps"
-        minSdkVersion 21
-        targetSdkVersion 34
-        versionCode 20
-        versionName "1.20"
+        minSdkVersion 23
+        targetSdkVersion 36
+        versionCode 21
+        versionName "1.21"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -29,12 +29,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
-    implementation 'com.google.firebase:firebase-ads:23.2.0'
+    implementation 'com.google.firebase:firebase-ads:23.6.0'
     implementation 'com.google.firebase:firebase-core:21.1.1'
-    implementation 'com.google.android.gms:play-services-ads:23.2.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.gms:play-services-ads:24.4.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.android.support:multidex:1.0.3'
 }
